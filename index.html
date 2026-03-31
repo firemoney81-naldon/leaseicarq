@@ -1,23 +1,502 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutomotiveBusiness",
+      "name": "BMW X1 리스 전문 플랫폼",
+      "url": "https://yourdomain.com",
+      "description": "2026년형 BMW X1 모델의 리스 및 장기렌트 상품을 비교하고 견적을 제공하는 전문 서비스입니다. 합리적인 가격과 투명한 계약 조건으로 고객 맞춤형 솔루션을 제안합니다.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "가상의 주소",
+        "addressLocality": "대한민국",
+        "postalCode": "12345",
+        "addressCountry": "KR"
+      },
+      "priceRange": "KRW",
+      "areaServed": "대한민국 전역",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "BMW X1 모델별 리스 상품",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "BMW X1 sDrive18d 리스"
+            },
+            "price": "500000",
+            "priceCurrency": "KRW",
+            "description": "BMW X1 sDrive18d 모델의 월 리스료. 계약 조건(기간, 선납금)에 따라 변동될 수 있습니다."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "BMW X1 xDrive20i 리스"
+            },
+            "price": "600000",
+            "priceCurrency": "KRW",
+            "description": "BMW X1 xDrive20i 모델의 월 리스료. 계약 조건(기간, 선납금)에 따라 변동될 수 있습니다."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "BMW X1 M Sport 리스"
+            },
+            "price": "700000",
+            "priceCurrency": "KRW",
+            "description": "BMW X1 M Sport 모델의 월 리스료. 계약 조건(기간, 선납금)에 따라 변동될 수 있습니다."
+          }
+        ]
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: #f0f4f8; /* 부드러운 배경색 */
+      color: #333;
+      word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
+    }
+    header {
+      background-color: #004d99; /* 더 깊은 파란색 */
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 1.1rem;
+    }
+    nav a:hover {
+      color: #ffe066; /* 밝은 노란색 */
+      transform: translateY(-2px);
+    }
+    main {
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.08);
+      border-radius: 12px;
+    }
+    h1, h2 {
+      color: #003366; /* 진한 남색 */
+      font-weight: 700;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-bottom: 3px solid #e0f0ff;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      color: #004d99;
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    p {
+      text-align: justify;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    th {
+      background-color: #004d99;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+    dl dt {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      color: #0066cc;
+      background-color: #f5fafd;
+      padding: 1rem;
+      border-left: 5px solid #0066cc;
+      transition: background-color 0.3s ease;
+    }
+    dl dt:hover {
+      background-color: #e6f2ff;
+    }
+    dl dd {
+      margin: 0.5rem 0 1.5rem 1rem;
+      padding-left: 1rem;
+      border-left: 2px dashed #ccc;
+      display: none;
+    }
+    dl dt.active + dd {
+      display: block;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #ff6600;
+      color: white;
+      font-weight: 700;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 2rem 0;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .cta-button:hover {
+      background-color: #e65c00;
+      transform: translateY(-2px);
+    }
+    .keyword-tags {
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .keyword-tags a {
+      background-color: #e0f0ff;
+      color: #0066cc;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .keyword-tags a:hover {
+      background-color: #b3d1ff;
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e0eaf1;
+      margin-top: 3rem;
+      border-top: 1px solid #d0dbe4;
+    }
+    .external-link {
+      display: inline-block;
+      color: #0066cc;
+      font-weight: 500;
+      margin-top: 1rem;
+      text-decoration: underline;
+    }
+    .form-section {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem 0;
+      border: 1px solid #e0e0e0;
+    }
+    .form-section label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 500;
+      color: #003366;
+    }
+    .form-section input[type="text"],
+    .form-section input[type="email"],
+    .form-section input[type="tel"],
+    .form-section select {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .form-section input[type="submit"] {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .form-section input[type="submit"]:hover {
+      background-color: #004d99;
+    }
+    .graph-container {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .graph-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BMW X1 리스 가격 비교 및 견적 전문 사이트</h1>
+    <p>2026년형 BMW X1 신차 출고, 가장 합리적인 방법은?</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#intro">서비스 소개</a></li>
+        <li><a href="#lease_price">BMW X1 리스 가격</a></li>
+        <li><a href="#comparison">리스vs할부 비교</a></li>
+        <li><a href="#process">리스 진행 절차</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>BMW X1 리스, 왜 선택해야 할까요?</h2>
+      <p>럭셔리 소형 SUV의 새로운 기준, **BMW X1**은 세련된 디자인과 뛰어난 성능, 그리고 첨단 기술이 결합된 매력적인 모델입니다. 신형 BMW X1은 특히 실용성과 운전의 즐거움을 동시에 추구하는 젊은 세대와 소규모 가족에게 폭발적인 인기를 얻고 있습니다. **BMW X1 리스**는 이러한 매력적인 차량을 초기 부담 없이 합리적인 월 납입금으로 소유할 수 있는 가장 스마트한 방법으로 자리 잡았습니다.</p>
+      <p>저희 **BMW X1 리스 전문 플랫폼**은 2026년형 BMW X1의 다양한 모델(sDrive18d, xDrive20i, M Sport 등)에 대한 **최저가 견적**을 실시간으로 비교 분석해 드립니다. 여러 금융사의 **BMW X1 리스 가격**을 한눈에 확인하여 고객님께 가장 유리한 조건을 찾아드립니다. 복잡한 리스 계약 조건, 숨겨진 추가 비용 없이 투명한 **BMW X1 견적**을 지금 바로 경험하세요.</p>
+
+      <h3>BMW X1의 매력: 2026년형 모델 특징 분석</h3>
+      <p>BMW X1은 특유의 스포티함과 실용성을 겸비하여 국내 시장에서 꾸준한 사랑을 받고 있습니다. 특히 2026년형 모델은 이전 세대 대비 더욱 강화된 인테리어 디자인과 최신 인포테인먼트 시스템을 탑재하여 상품성이 대폭 향상되었습니다. 넓어진 실내 공간과 트렁크 용량은 실용성을 극대화하며, 다양한 첨단 운전자 보조 시스템(ADAS)은 안전하고 편리한 주행을 지원합니다. **BMW X1 sDrive18d**는 경제적인 연비로 출퇴근이나 일상 주행에 적합하며, **BMW X1 xDrive20i**는 강력한 주행 성능과 사륜구동 시스템으로 다이내믹한 주행을 선호하는 고객에게 이상적입니다. 두 모델 모두 **BMW X1 리스**로 이용 시 합리적인 **월 납입금**으로 높은 만족도를 얻을 수 있습니다.</p>
+    </section>
+
+    <div class="keyword-tags" aria-label="BMW X1 관련 키워드">
+      <a href="#lease_price">BMW X1 리스 가격</a>
+      <a href="#comparison">BMW X1 리스 장단점</a>
+      <a href="#lease_price">BMW X1 견적</a>
+      <a href="#lease_price">BMW X1 sDrive18d 가격</a>
+      <a href="#lease_price">BMW X1 xDrive20i 리스 비용</a>
+      <a href="#comparison">리스 할부 차이점</a>
+      <a href="#process">BMW X1 리스 전문 업체</a>
+      <a href="#lease_price">BMW X1 할인 프로모션</a>
+      <a href="#comparison">BMW X1 내돈내산 후기</a>
+      <a href="#lease_price">BMW X1 싼곳</a>
+      <a href="#lease_price">BMW X1 최저가</a>
+      <a href="#faq">BMW X1 리스 조건</a>
+      <a href="#faq">BMW X1 장기렌트</a>
+      <a href="#lease_price">BMW X1 M Sport 리스</a>
+      <a href="#comparison">BMW X1 리스 vs 장기렌트</a>
+      <a href="#intro">BMW X1 모델 비교</a>
+    </div>
+
+    <section id="lease_price">
+      <h2>BMW X1 모델별 리스 가격 및 견적 분석</h2>
+      <p><strong>BMW X1 리스 비용</strong>은 차량 가격, 리스 기간, 잔존가치, 선수금(선납금) 유무, 이자율 및 프로모션 할인에 따라 천차만별입니다. 특히 **BMW X1 sDrive18d** 모델은 엔트리급 모델로, 가장 저렴한 리스 견적을 기대할 수 있습니다. 반면 **BMW X1 xDrive20i**는 더 높은 출력과 사륜구동 시스템으로 인해 **월 납입금**이 다소 높게 책정될 수 있습니다. 2026년도 최신 기준, 주요 모델별 예상 리스 가격을 아래 표를 통해 비교해 보세요. 본 표는 일반적인 48개월 리스 조건(잔존가치 30%, 선납금 20% 기준)의 **평균적인 리스 비용**을 나타냅니다. 정확한 **BMW X1 리스 견적**은 고객님의 조건과 실시간 프로모션에 따라 달라질 수 있으므로 반드시 상담을 통해 확인하시기 바랍니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>모델명</th>
+            <th>차량 기본 가격 (KRW)</th>
+            <th>48개월 기준 예상 월 리스료</th>
+            <th>주요 특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BMW X1 sDrive18d</strong></td>
+            <td>5,800만원 ~ 6,100만원</td>
+            <td><strong>월 50만원대 ~</strong></td>
+            <td>연비 효율성 우수, 2026년형 엔트리 모델, 경제적인 리스 비용</td>
+          </tr>
+          <tr>
+            <td><strong>BMW X1 xDrive20i</strong></td>
+            <td>6,200만원 ~ 6,500만원</td>
+            <td><strong>월 60만원대 ~</strong></td>
+            <td>강력한 주행 성능, xDrive 사륜구동 시스템, 다이내믹한 주행감</td>
+          </tr>
+          <tr>
+            <td><strong>BMW X1 M Sport</strong></td>
+            <td>6,500만원 ~ 6,800만원</td>
+            <td><strong>월 60만원대 후반 ~</strong></td>
+            <td>스포티한 내외장 디자인, M 스포츠 패키지 적용, 고급스러움 강조</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>BMW X1 리스 견적을 저렴하게 받는 꿀팁</h3>
+      <p><strong>BMW X1 리스 비용</strong>을 절약하기 위한 핵심은 <strong>잔존가치 설정</strong>과 <strong>선수금(선납금) 조정</strong>입니다. 잔존가치란 리스 기간이 끝났을 때 차량의 예상 가치를 의미합니다. 잔존가치를 높게 설정할수록 매월 납입하는 리스료가 낮아집니다. 또한, 선수금을 납부하면 리스 원금이 줄어들어 월 납입금 역시 낮아집니다. 하지만 선수금은 돌려받지 못하는 금액이므로 신중하게 결정해야 합니다. **BMW X1 리스 싼곳**을 찾기 위해서는 여러 금융사의 금리(이자율)와 프로모션을 비교하는 것이 필수적입니다. 저희 플랫폼은 제휴된 다수의 **BMW 리스 전문 업체**의 견적을 비교하여 고객님께 최적의 조건을 제안해 드립니다. 특히 재고 상황에 따라 **BMW X1 할인**이 크게 적용되는 경우가 많으므로 실시간으로 확인하는 것이 중요합니다.</p>
+
+      <h4>BMW X1 리스 가격 견적 요소 분석</h4>
+      <p>BMW X1 리스 견적은 다음과 같은 주요 구성 요소로 산출됩니다. ①<strong>차량 판매 가격:</strong> 차량의 기본 가격에 옵션이 추가된 가격입니다. ②<strong>잔존가치(Residual Value):</strong> 리스 계약 만기 시 차량의 예상 가치로, 높을수록 월 납입금이 저렴해집니다. ③<strong>리스 이자율:</strong> 금융사별로 다르게 적용되는 금리입니다. ④<strong>선수금/보증금:</strong> 선수금은 월 납입금을 줄이는 효과가 있지만 돌려받지 못하며, 보증금은 만기 시 돌려받을 수 있습니다. ⑤<strong>자동차세 및 보험료:</strong> 리스 상품에 따라 포함 여부가 다를 수 있습니다.</p>
+
+      <!-- 그래프 삽입 예시 (시각적 효과 및 체류 시간 증대) -->
+      <div class="graph-container">
+        <h3>모델별 리스료 비교 분석 (시각화)</h3>
+        <p>BMW X1 sDrive18d와 xDrive20i의 48개월 리스료 예상치 비교 (가상의 데이터 기반 그래프)</p>
+        <!-- 실제 그래프 이미지를 Pexels 등에서 찾아서 삽입 (ex: bar chart for lease cost comparison) -->
+        <img src="https://images.pexels.com/photos/1001693/pexels-photo-1001693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="BMW X1 리스 가격 비교 그래프">
+        <p>그래프 설명: 위의 그래프는 48개월 리스 기간 동안 sDrive18d와 xDrive20i 모델의 월 납입금 차이를 보여줍니다. xDrive20i 모델은 더 높은 차량가로 인해 평균적으로 월 납입금이 높지만, 연간 주행거리나 차량 유지 보수 비용을 고려할 때 총 비용은 개인의 주행 습관에 따라 달라질 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <h2>BMW X1 리스 vs 할부: 장단점 비교</h2>
+      <p>BMW X1을 신차로 구매할 때 가장 고민되는 부분이 리스와 할부 중 어떤 방식을 선택해야 하는가입니다. 두 방식 모두 장단점이 명확하므로, 고객님의 재정 상황과 차량 운용 목적에 따라 신중하게 결정해야 합니다. **BMW X1 리스**는 초기 비용 부담을 최소화하고 매월 일정 금액만 납부하면 되기 때문에 현금 유동성을 확보하는 데 유리합니다. 반면, **BMW X1 할부**는 차량을 즉시 소유할 수 있다는 장점이 있습니다.</p>
+
+      <h3>BMW X1 리스의 장점 (Pros)</h3>
+      <p><strong>1. 초기 비용 최소화:</strong> 신차를 구매할 때 발생하는 취득세, 등록세 등 초기 비용이 리스료에 포함되어 목돈 지출을 줄일 수 있습니다. 특히 사업자의 경우 **BMW X1 리스**를 통해 비용 처리가 용이하여 세금 절감 효과를 볼 수 있습니다. 리스료 전액을 손비 처리할 수 있어 법인세 또는 종합소득세를 절감하는 효과가 탁월합니다.
+      <br><strong>2. 간편한 차량 관리:</strong> 리스 계약 기간 동안 차량 정비, 소모품 교체, 사고 처리 등이 리스 업체에서 제공하는 서비스에 포함되는 경우가 많아 편리합니다. **BMW X1**의 보증 기간이 끝난 후에도 추가적인 유지보수 비용에 대한 걱정을 덜 수 있습니다.
+      <br><strong>3. 차량 교체의 용이성:</strong> 계약 기간 만료 후 차량을 반납하고 새로운 **BMW X1** 모델이나 다른 차량으로 쉽게 교체할 수 있습니다. 3~4년마다 신차를 경험할 수 있다는 점은 차량을 자주 바꾸고자 하는 고객에게 큰 장점입니다.
+      <br><strong>4. 재산세 및 건강보험료 상승 회피:</strong> 할부로 차량을 구매하면 차량이 개인 자산으로 등록되어 재산세가 부과되고, 건강보험료가 상승할 수 있습니다. 리스 차량은 업체 소유이므로 이러한 부담이 없습니다.</p>
+
+      <h3>BMW X1 리스의 단점 (Cons)</h3>
+      <p><strong>1. 총 이자 비용 발생:</strong> 리스는 기본적으로 금융 상품이므로, 할부와 마찬가지로 이자가 발생합니다. 계약 기간이 길어질수록 총 납입금이 차량가격을 상회할 수 있습니다.
+      <br><strong>2. 주행 거리 제한:</strong> 리스 계약 시 연간 주행 거리가 정해져 있으며, 이를 초과할 경우 만기 시 추가 비용이 발생합니다. 주행 거리가 많은 고객에게는 불리할 수 있습니다.
+      <br><strong>3. 중도 해지 위약금:</strong> 계약 기간 중 해지 시 높은 위약금이 발생합니다. **BMW X1**을 예상보다 빨리 처분해야 할 상황이 생길 경우 손해가 클 수 있습니다. 중도 해지 위약금 규정을 사전에 꼼꼼히 확인해야 합니다.</p>
+
+      <h3>BMW X1 장기렌트와 리스의 차이점</h3>
+      <p>많은 고객님들이 **BMW X1 장기렌트**와 리스를 혼동합니다. 리스는 금융 상품(할부와 유사)으로, 일반 번호판(하, 허, 호가 아닌)을 사용하며 보험료를 개인이 납부합니다. 반면 장기렌트는 자동차 대여 상품으로 '하, 허, 호' 번호판을 사용하며, 보험료가 월 렌트료에 포함되어 보험 경력이 단절될 수 있습니다. **BMW X1 리스**는 개인 보험료를 유지하면서 차량 운용의 편리함을 누리고 싶은 고객에게 적합하며, **장기렌트**는 보험료 인상 부담이 크거나 운전 경력이 짧은 고객에게 유리할 수 있습니다.</p>
+    </section>
+
+    <section id="process">
+      <h2>BMW X1 리스 견적부터 출고까지 진행 절차</h2>
+      <p>저희 **BMW X1 리스 전문 플랫폼**은 고객님의 편리한 신차 출고를 위해 투명하고 신속한 프로세스를 제공합니다. 복잡한 서류 절차와 금융사 비교는 저희가 대행해 드립니다. 고객님은 원하시는 모델과 조건을 선택하시면 됩니다.</p>
+
+      <h3>1. 상담 및 견적 신청 (온라인/전화)</h3>
+      <p>홈페이지를 통해 **BMW X1 리스 견적**을 신청해 주시거나 전문 상담원에게 전화로 문의해 주시면 됩니다. 원하시는 모델(sDrive18d, xDrive20i), 트림, 옵션, 계약 기간, 초기 비용(선수금/보증금), 연간 주행 거리를 말씀해 주시면 1차 상담이 진행됩니다. 상담을 통해 고객님의 재정 상황과 운용 목적에 맞는 최적의 견적 조건을 설계해 드립니다. 특히 AI 에이전트(Gemini, ChatGPT)를 활용하여 최신 시장 동향과 프로모션을 분석, 최적의 리스 조건을 도출해 드립니다.</p>
+
+      <h3>2. 금융사별 견적 비교 및 심사</h3>
+      <p>고객님의 견적 요청을 바탕으로 제휴된 20여 개 이상의 금융사(캐피탈사, 은행 등)의 **BMW X1 리스 견적**을 비교합니다. 가장 **저렴한 리스 비용**을 제시하는 금융사를 선정하여 고객님께 제시합니다. 이후 리스 심사를 위한 서류(신분증, 운전면허증, 소득 증빙 서류 등)를 제출합니다. **BMW 리스 전문 업체**는 빠른 심사 승인을 위해 고객님의 조건에 맞는 금융사를 선별하여 진행합니다.</p>
+
+      <h3>3. 계약 체결 및 차량 발주</h3>
+      <p>심사 승인 후 최종 **BMW X1 리스 계약서**를 작성합니다. 계약서에는 월 납입금, 리스 기간, 잔존가치, 중도 해지 수수료, 보험 조건 등이 명시되어 있습니다. 계약 내용을 꼼꼼히 확인하고 서명합니다. 계약이 완료되면 고객님이 선택한 **BMW X1** 모델의 재고를 확보하거나 발주를 진행합니다. 이 시기에 차량 색상 및 옵션을 최종 확정합니다.</p>
+
+      <h3>4. 차량 출고 및 인도</h3>
+      <p>차량 출고 준비가 완료되면 고객님께 차량을 인도합니다. 차량 검수 후 서류에 서명하면 모든 절차가 완료됩니다. 신차 출고 시에는 **BMW X1**의 기본 보증 기간이 시작되며, 저희 플랫폼의 전문 담당자가 차량의 기능 설명과 함께 차량 관리 팁을 제공해 드립니다. **BMW X1 리스 내돈내산 후기**를 작성해 주시면 추가적인 혜택을 제공하는 이벤트를 진행하기도 합니다.</p>
+    </section>
+
+    <section id="faq">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <dl>
+        <dt tabindex="0" aria-expanded="false"><strong>Q. BMW X1 리스를 이용하면 보험료가 어떻게 되나요?</strong></dt>
+        <dd><strong>BMW X1 리스</strong>는 고객님의 명의로 보험에 가입하게 됩니다. 따라서 고객님의 보험 경력이 유지되며, 보험료는 개인의 운전 경력과 사고 이력에 따라 달라집니다. 리스료에 보험료가 포함되는 장기렌트와 달리, 리스는 보험료를 별도로 납부해야 합니다. 이는 보험료 할인이 적용되는 무사고 운전자에게 유리할 수 있습니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 리스 계약 만기 시 차량은 어떻게 처리하나요?</strong></dt>
+        <dd>계약 만기 시에는 크게 세 가지 선택지가 있습니다. 첫째, 차량을 반납하고 계약을 종료합니다. 둘째, 차량을 인수(구매)합니다. 이때 잔존가치를 납부하고 소유권을 이전받을 수 있습니다. 셋째, 재리스(계약 연장)를 합니다. 고객님의 상황에 맞는 가장 합리적인 선택을 할 수 있도록 만기 3개월 전에 전문 상담원이 안내해 드립니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 리스 계약 시 선수금과 보증금의 차이는 무엇인가요?</strong></dt>
+        <dd><strong>선수금(선납금)</strong>은 미리 납부하는 리스료의 일부로, 월 납입금을 낮추는 효과가 있습니다. 만기 시 환급되지 않는 금액입니다. 반면 <strong>보증금</strong>은 계약 이행을 보증하기 위해 맡겨두는 금액으로, 만기 시 전액 환급됩니다. 초기 비용을 회수하고 싶다면 보증금, 월 납입금을 낮추고 싶다면 선수금을 선택할 수 있습니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 신용 등급이 낮아도 리스가 가능한가요?</strong></dt>
+        <dd>네, 신용 등급이 낮아도 **BMW X1 리스**가 가능한 경우가 있습니다. 금융사마다 심사 기준이 다르므로, 저희 플랫폼의 전문 상담원에게 문의해 주시면 고객님의 조건에 맞는 금융사를 선별하여 심사를 진행해 드립니다. 신용 등급이 낮을수록 보증금 비율을 높이거나 추가 서류 제출을 통해 심사 승인을 받을 확률을 높일 수 있습니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. BMW X1 리스를 위한 프로모션이나 할인 혜택은 언제 가장 많은가요?</strong></dt>
+        <dd>일반적으로 연말(11월~12월) 또는 분기 마감 시점에 재고 소진을 위한 프로모션이 집중되는 경향이 있습니다. 또한 신형 모델 출시 직전 구형 모델에 대한 할인이 크게 적용되기도 합니다. 저희 **BMW X1 리스 전문 업체**는 실시간으로 변경되는 프로모션 정보를 파악하여 고객님께 최대한의 **BMW X1 할인**을 적용한 견적을 제공해 드립니다.</dd>
+      </dl>
+    </section>
+
+    <section id="lease_application">
+      <h2>BMW X1 리스 무료 견적 신청</h2>
+      <p>가장 합리적인 <strong>BMW X1 리스 견적</strong>을 지금 바로 받아보세요. 고객님의 맞춤형 조건을 입력하시면 전문 상담원이 신속하게 연락드리겠습니다. <strong>2026년형 BMW X1</strong> 모델에 대한 상세 정보와 **최저가 가격**을 안내해 드립니다.</p>
+
+      <!-- 사용자 참여 유도를 위한 입력 폼 -->
+      <div class="form-section">
+        <h3>무료 상담 신청 양식</h3>
+        <form action="#" method="post">
+          <label for="name">성함*</label>
+          <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+
+          <label for="phone">연락처*</label>
+          <input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678">
+
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="예: example@email.com">
+
+          <label for="model">희망 모델*</label>
+          <select id="model" name="model" required>
+            <option value="">모델을 선택하세요</option>
+            <option value="sDrive18d">BMW X1 sDrive18d</option>
+            <option value="xDrive20i">BMW X1 xDrive20i</option>
+            <option value="M Sport">BMW X1 M Sport</option>
+            <option value="Other">다른 모델 (상담)</option>
+          </select>
+
+          <label for="term">희망 리스 기간*</label>
+          <select id="term" name="term" required>
+            <option value="">기간을 선택하세요</option>
+            <option value="36">36개월</option>
+            <option value="48">48개월</option>
+            <option value="60">60개월</option>
+          </select>
+
+          <label for="initial_cost">초기 비용 희망 조건 (선수금/보증금)</label>
+          <input type="text" id="initial_cost" name="initial_cost" placeholder="예: 선수금 20% 또는 보증금 0원">
+
+          <label for="message">추가 문의 사항</label>
+          <textarea id="message" name="message" rows="4" placeholder="궁금한 점을 자세히 남겨주세요."></textarea>
+
+          <input type="submit" value="무료 견적 신청하기">
+        </form>
+      </div>
+    </section>
+
+    <section id="external_info">
+      <h2>BMW X1 관련 외부 신뢰성 정보 출처</h2>
+      <p>BMW X1 리스 계약을 진행하기 전에 다양한 정보를 통해 신뢰성을 확보하는 것이 중요합니다. 아래는 차량 구매 및 금융 상품에 대한 신뢰할 수 있는 외부 정보 소스입니다.</p>
+      <ul>
+        <li><a href="https://www.ftc.go.kr/www/main.do" target="_blank" rel="noopener noreferrer"><strong>공정거래위원회 (FTC):</strong></a> 소비자 보호 규정 및 표준 약관을 확인할 수 있는 정부 기관입니다.</li>
+        <li><a href="https://www.fss.or.kr/main/index.do" target="_blank" rel="noopener noreferrer"><strong>금융감독원 (FSS):</strong></a> 금융 상품 관련 정보 및 분쟁 조정 절차를 안내하는 기관입니다.</li>
+        <li><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=197824&efYd=20180802#0000" target="_blank" rel="noopener noreferrer"><strong>여신전문금융업법 (법제처):</strong></a> 리스를 포함한 여신금융 관련 법률 정보를 확인할 수 있습니다.</li>
+        <li><a href="https://namu.wiki/w/BMW" target="_blank" rel="noopener noreferrer"><strong>나무위키 - BMW:</strong></a> BMW 브랜드의 역사와 모델별 특징, 트렌드 등 광범위한 정보를 참고할 수 있습니다.</li>
+        <li><a href="https://www.kdata.or.kr/" target="_blank" rel="noopener noreferrer"><strong>한국데이터산업진흥원 (K-Data):</strong></a> AI 기술 활용 및 데이터 산업 동향을 참고하여 미래 차량 시장 변화를 예측할 수 있습니다.</li>
+        <li><a href="https://www.encar.com/index.do" target="_blank" rel="noopener noreferrer"><strong>엔카닷컴:</strong></a> 중고차 시세를 파악하여 리스 잔존가치 설정에 도움을 받을 수 있습니다.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script>
+    // FAQ 아코디언 기능 (접기/펼치기)
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+        dt.setAttribute('aria-expanded', !expanded);
+        dt.classList.toggle('active');
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+  </script>
+  
